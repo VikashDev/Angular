@@ -6,3 +6,5 @@
 * Namespaces
 * Defining & Binding Controller
 * Dependency Injection
+* Scope
+* Parsing
