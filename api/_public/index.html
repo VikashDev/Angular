@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html ng-app="apiApp">
+<head>
+	<title>Api Connect</title>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="js/angular.js"></script>
+	<style type="text/css">
+
+	.card {
+    padding-top: 20px;
+    margin: 10px 0 20px 0;
+    background-color: rgba(214, 224, 226, 0.2);
+    border-top-width: 0;
+    border-bottom-width: 2px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.card .card-heading {
+    padding: 0 20px;
+    margin: 0;
+}
+
+.card .card-heading.simple {
+    font-size: 20px;
+    font-weight: 300;
+    color: #777;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.card .card-heading.image img {
+    display: inline-block;
+    width: 46px;
+    height: 46px;
+    margin-right: 15px;
+    vertical-align: top;
+    border: 0;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.card .card-heading.image .card-heading-header {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.card .card-heading.image .card-heading-header h3 {
+    margin: 0;
+    font-size: 14px;
+    line-height: 16px;
+    color: #262626;
+}
+
+.card .card-heading.image .card-heading-header span {
+    font-size: 12px;
+    color: #999999;
+}
+
+.card .card-body {
+    padding: 0 20px;
+    margin-top: 20px;
+}
+
+.card .card-media {
+    padding: 0 20px;
+    margin: 0 -14px;
+}
+
+.card .card-media img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.card .card-actions {
+    min-height: 30px;
+    padding: 0 20px 20px 20px;
+    margin: 20px 0 0 0;
+}
+
+.card .card-comments {
+    padding: 20px;
+    margin: 0;
+    background-color: #f8f8f8;
+}
+
+.card .card-comments .comments-collapse-toggle {
+    padding: 0;
+    margin: 0 20px 12px 20px;
+}
+
+.card .card-comments .comments-collapse-toggle a,
+.card .card-comments .comments-collapse-toggle span {
+    padding-right: 5px;
+    overflow: hidden;
+    font-size: 12px;
+    color: #999;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.card-comments .media-heading {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.card.people {
+    position: relative;
+    display: inline-block;
+    width: 170px;
+    height: 300px;
+    padding-top: 0;
+    margin-left: 20px;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.card.people:first-child {
+    margin-left: 0;
+}
+
+.card.people .card-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 170px;
+    height: 150px;
+    background-color: #ffffff;
+}
+
+.card.people .card-top.green {
+    background-color: #53a93f;
+}
+
+.card.people .card-top.blue {
+    background-color: #427fed;
+}
+
+.card.people .card-info {
+    position: absolute;
+    top: 150px;
+    display: inline-block;
+    width: 100%;
+    height: 101px;
+    overflow: hidden;
+    background: #ffffff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.card.people .card-info .title {
+    display: block;
+    margin: 8px 14px 0 14px;
+    overflow: hidden;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 18px;
+    color: #404040;
+}
+
+.card.people .card-info .desc {
+    display: block;
+    margin: 8px 14px 0 14px;
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 16px;
+    color: #737373;
+    text-overflow: ellipsis;
+}
+
+.card.people .card-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: inline-block;
+    width: 100%;
+    padding: 10px 20px;
+    line-height: 29px;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.card.hovercard {
+    position: relative;
+    padding-top: 0;
+    overflow: hidden;
+    text-align: center;
+    background-color: rgba(214, 224, 226, 0.2);
+}
+
+.card.hovercard .cardheader {
+    background: url("http://lorempixel.com/850/280/nature/4/");
+    background-size: cover;
+    height: 135px;
+}
+
+.card.hovercard .avatar {
+    position: relative;
+    top: -50px;
+    margin-bottom: -50px;
+}
+
+.card.hovercard .avatar img {
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 5px solid rgba(255,255,255,0.5);
+}
+
+.card.hovercard .info {
+    padding: 4px 8px 10px;
+}
+
+.card.hovercard .info .title {
+    margin-bottom: 4px;
+    font-size: 24px;
+    line-height: 1;
+    color: #262626;
+    vertical-align: middle;
+}
+
+.card.hovercard .info .desc {
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 20px;
+    color: #737373;
+    text-overflow: ellipsis;
+}
+
+.card.hovercard .bottom {
+    padding: 0 20px;
+    margin-bottom: 17px;
+}
+
+		
+	</style>
+
+</head>
+
+<body style="background-color: #36465D" ng-controller= "apiCtrl" >
+		  <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display-->
+          <div class="navbar-header">
+            <button type="button" data-toggle="collapse" data-target=".navbar-ex1-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="#" class="navbar-brand"><img src="web-logo.png" ></a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling-->
+          <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <form role="search" class="navbar-form navbar-left">
+              <div class="form-group">
+                <div class="icon-addon addon-lg">
+                  <input id="email" type="text" placeholder="Search Tripshire" class="form-control"/>
+                  <label for="email" rel="tooltip" title="email" class="glyphicon glyphicon-search"></label>
+                </div>
+              </div>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#" class="current">Bookmarks</a></li>
+              <li><a href="#" class="current">Notification</a></li>
+              <li><a href="#" class="current">Messages</a></li>
+              <li><a href="#" data-toggle="modal" data-target="#myLoginModal">SignUp</a></li>
+              
+          </ul>
+        </div>
+        <!-- /.navbar-collapse-->
+      </div>
+    </nav>
+
+    	<div class="container-fluid" style="margin-top: 90px;">
+    		<div class="container">
+
+    		 <div class="row">
+
+ 				
+    					   		 
+            <div class="col-md-6 col-md-offset-2">
+
+            <div class="row" style="background-color: #fff;  margin-bottom: 20px; border-radius: 5px;">
+    						<div class="col-md-6">
+    							 <a href="" class="text-center" >
+           							 <p><i aria-hidden="true" class="fa fa-address-card "></i>
+           							 </p>
+                    				<p><h4 class="text-center">Add a card</h4></p>
+                    			</a>
+    						</div>
+    						<div class="col-md-6">
+    							<a href="" class="text-center">
+           							 <p><i aria-hidden="true" class="fa fa-address-card "></i></p>
+                    				<p><h4 class="text-center">Ask a Question</h4></p>
+                    			</a>
+    						</div>
+    					</div>
+            </div>      
+        </div>
+
+
+
+    <div class="row"  >
+    			<div class="col-md-8" ng-repeat="card in cards" style="margin-bottom: 20px;">
+    				<div class="row">
+    					
+    					<div class="col-md-2 dropdown">
+    				<a href="" id="profileImage">
+				<img src="http://lorempixel.com/100/100/people/9/" class="img-circular" />
+				</a>
+    				</div>
+
+
+    				<div class="col-md-10" style="background-color: #fff; border-radius: 3px;" >
+    					
+
+    					<div class="row">
+    						<div class="col-md-12">
+    							<div class="row">
+                  					<div class="col-md-9 col-sm-10">
+                    					<h2>{{card.name}}</h2>
+                    
+                  					</div>
+                   				<div class="col-md-3">
+                    				<p class="pull-right" style="margin-top: 15px;">
+                    				Bookmark
+                    				</p>
+                    				</div>
+                				</div>
+                				<div class="row">
+                				<div class="col-md-12">
+                				<a href="#">    
+                				<img src="{{card.image_url[0]}}" class="img-responsive">
+                				</a>
+                					
+                				</div>
+                					 
+                				</div>
+
+
+                				<div class="row">
+                					<small>Wekipidea:</small>
+                  					<p style="padding: 18px;">Television: Miraculous Melissa McCarthy ⬆ Miraculous(@officialmiraculousladybug) jumps three spots to No. 3 in anticipation of its Netflix rerelease. ☆ Saturday Night Livecame back at No. 13 after Melissa McCarthy killed that Sean Spicer impression. </p>
+                				</div>
+
+                				<div class="row">
+                					<p style="margin-left: 20px;">Tags</p>
+                				</div>
+
+                				<div class="row">
+                					<p style="margin-left: 20px;"">Tags</p>
+                				</div>
+
+                				 <div class="row" >
+                  					<div class="col-md-6">
+
+				                   
+				                    <span><a href=""> 1,954 notes</a></span>
+				                   <a href=""> <i aria-hidden="true" class="plr fa fa-thumbs-o-up"></i></a>
+				                   <a href=""> <i aria-hidden="true" class="plr fa fa-thumbs-o-down"></i></a>
+				                    <a href="#" data-toggle="modal" data-target="#myModal">
+				                    <i aria-hidden="true" class="plr fa fa-comment-o"></i>
+				                </a>
+				                
+				                    
+				                  </div>
+				                  <div class="col-md-5" >
+				                    <i aria-hidden="true" class="plr fa fa-facebook"></i><i aria-hidden="true" class="plr fa fa-google"></i><i aria-hidden="true" class="plr fa fa-pinterest"></i>
+				                    
+				                  </div>
+				                  
+				                </div>
+
+    							
+    						</div>
+    						
+    					</div>
+    				</div>
+
+
+
+
+
+
+    				</div>
+    			</div>
+
+    				
+
+
+
+
+    		<div class="col-md-4 hidden-sm hidden-xs">
+    			<div class="panel panel-primary panel-transparent">
+	              <div class="panel-heading">
+	                <h3 class="panel-title">Hey its a question for you?</h3>
+	              </div>
+              <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam euismod arcu ut diam maximus auctor. Sed malesuada maximus tellus, dignissim volutpat urna hendrerit at. Cras nisi turpis, mattis vitae ornare ut, bibendum et massa. Nulla at tellus a arcu luctus ultrices ac non felis. Maecenas euismod efficitur ipsum vel vestibulum. Nam imperdiet ipsum nunc, sit amet varius felis maximus quis. Etiam efficitur, mauris placerat luctus facilisis, ligula sem pellentesque nunc, ac viverra tellus velit sit amet purus. Proin a nunc id quam tempor blandit vitae id orci. Cras lectus turpis, varius nec elementum venenatis, suscipit ut nisl.Nulla condimentum est in leo mollis, sit amet varius erat pulvinar. Donec posuere turpis non est ultrices lobortis. Donec commodo aliquam sodales. Ut id finibus velit. Nam imperdiet ipsum nunc, sit amet varius felis maximus quis. Etiam efficitur, mauris placerat luctus facilisis, ligula sem pellentesque nunc, ac viverra tellus velit sit amet purus. Proin a nunc id quam tempor blandit vitae id orci. Cras lectus turpis, varius nec elementum venenatis, suscipit ut nisl.Nulla condimentum est in leo mollis, sit amet varius erat pulvinar. Donec posuere turpis non est ultrices lobortis. Donec commodo aliquam sodales. Ut id finibus velit. Nam imperdiet ipsum nunc, sit amet varius felis maximus quis. Etiam efficitur, mauris placerat luctus facilisis, ligula sem pellentesque nunc, ac viverra tellus velit sit amet purus. Proin a nunc id quam tempor blandit vitae id orci. Cras lectus turpis, varius nec elementum venenatis, suscipit ut nisl.Nulla condimentum est in leo mollis, sit amet varius erat pulvinar. Donec posuere turpis non est ultrices lobortis. Donec commodo aliquam sodales. Ut id finibus velit.                     </div>
+            </div>
+    				</div>
+    			</div>
+    		</div>
+    		
+    	</div>
+
+
+	
+		<button type="submit" ng-click="register()">Submit</button>
+	<script src="js/app.js"></script>
+	<script type="text/javascript" src = "js/data.factory.js"></script>
+	<script src="js/api.ctrl.js"></script>
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+      <script src="https://use.fontawesome.com/7cc7091fc2.js"></script>
+
+      <script type="text/javascript">
+      	$('#profileImage').mouseover(function() {
+
+      		$('#userProfile').show();
+      	})
+      </script>
+
+
+	
+</body>
+</html>

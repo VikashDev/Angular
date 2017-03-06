@@ -3,7 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-// data here 
+// data here
 
 let data = {
     name : 'vikash kumar',
@@ -44,9 +44,9 @@ app.get('/register/address/:add/name/:name', (req, res) => {
 app.post('/register', (req, res) => {
     console.log(req);
     let data = {
-        name : body.name,
-        email : body.email,
-        pass : body.pass
+        name : req.name,
+        email : req.email,
+        pass : req.pass
     };
     res.send(data);
 });
