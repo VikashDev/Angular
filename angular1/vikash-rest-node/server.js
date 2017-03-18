@@ -3,13 +3,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-// data here
-
-let data = {
-    name : 'vikash kumar',
-    age : 24,
-    address : 'noida'
-}
 
 // instantiate the app
 const app = express();
